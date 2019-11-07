@@ -16,7 +16,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.airloca.Entities.Personne;
 import com.example.airloca.R;
+import com.example.airloca.Session;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -123,11 +125,18 @@ public class CreationFragment extends Fragment {
 
     public class OkHttpAsync extends AsyncTask<String, Void, String> {
 
+        String nom = "";
+        String prenom = "";
+        String login = "";
+        String password = "";
+        String email = "";
+        String mobile = "";
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
 
             progressBar.setVisibility(View.VISIBLE);
+
 
         }
 
@@ -136,12 +145,12 @@ public class CreationFragment extends Fragment {
 
             OkHttpClient client = new OkHttpClient();
 
-            String nom = params[1];
-            String prenom = params[2];
-            String login = params[3];
-            String password = params[4];
-            String email = params[5];
-            String mobile = params[6];
+             nom = params[1];
+             prenom = params[2];
+             login = params[3];
+             password = params[4];
+             email = params[5];
+             mobile = params[6];
 
 
             RequestBody body = new FormEncodingBuilder()
@@ -172,6 +181,17 @@ public class CreationFragment extends Fragment {
             super.onPostExecute(s);
             progressBar.setVisibility(View.INVISIBLE);
 
+            if(s =="0"){
+
+                Personne personne = new Personne();
+                personne.setNom(nom);
+                personne.setPrenom(prenom);
+                personne.setLogin(login);
+                personne.setEmail(email);
+                personne.setPassword(password);
+                personne.setMobile(mobile);
+                Session.setPersonneConnected(personne);
+            }
 
 
         }
