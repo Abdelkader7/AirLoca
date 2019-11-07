@@ -71,6 +71,9 @@ public class HomeActivity extends AppCompatActivity {
                 break;
 
 
+            case R.id.action_login:
+                navController.navigate(R.id.nav_login);
+                break;
             default:
                 break;
         }

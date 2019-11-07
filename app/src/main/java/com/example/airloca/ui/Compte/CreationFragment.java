@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -193,7 +195,9 @@ public class CreationFragment extends Fragment {
 
                 Session.setPersonneConnected(personne);
 
-                NavC
+
+                NavController navController = Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+                navController.navigate(R.id.nav_compte_personne);
             }
 
 

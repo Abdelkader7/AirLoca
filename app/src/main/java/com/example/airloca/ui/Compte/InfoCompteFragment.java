@@ -62,8 +62,6 @@ public class InfoCompteFragment extends Fragment {
 
         Personne personne = Session.getPersonneConnected();
 
-        NavController navController = Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
-        navController.navigate(R.id.nav_compte_personne);
 
 
         if(personne != null && !personne.getNom().isEmpty()){

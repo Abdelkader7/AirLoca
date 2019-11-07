@@ -11,4 +11,9 @@
         android:icon="@drawable/ic_person_add_black_24dp"
         android:title="Item"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/action_login"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="Login"
+        app:showAsAction="always" />
 </menu>

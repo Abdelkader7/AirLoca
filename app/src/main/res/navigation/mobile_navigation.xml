@@ -52,4 +52,10 @@
         android:name="com.example.airloca.ui.Compte.InfoCompteFragment"
         android:label="Compte Personne"
         tools:layout="@layout/fragment_info_compte" />
+
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="com.example.airloca.ui.Compte.LoginFragment"
+        android:label="Login Personne"
+        tools:layout="@layout/fragment_login" />
 </navigation>
