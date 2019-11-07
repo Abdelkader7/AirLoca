@@ -46,4 +46,10 @@
         android:name="com.example.airloca.ui.Compte.CreationFragment"
         android:label="Insert Personne"
         tools:layout="@layout/fragment_creation" />
+
+    <fragment
+        android:id="@+id/nav_compte_personne"
+        android:name="com.example.airloca.ui.Compte.InfoCompteFragment"
+        android:label="Compte Personne"
+        tools:layout="@layout/fragment_info_compte" />
 </navigation>

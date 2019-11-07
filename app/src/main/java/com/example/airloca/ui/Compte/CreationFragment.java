@@ -190,7 +190,10 @@ public class CreationFragment extends Fragment {
                 personne.setEmail(email);
                 personne.setPassword(password);
                 personne.setMobile(mobile);
+
                 Session.setPersonneConnected(personne);
+
+                NavC
             }
 
 
