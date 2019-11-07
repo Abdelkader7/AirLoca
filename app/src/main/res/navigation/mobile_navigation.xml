@@ -40,4 +40,10 @@
         android:name="com.example.airloca.ui.send.SendFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send" />
+
+    <fragment
+        android:id="@+id/nav_insert_personne"
+        android:name="com.example.airloca.ui.Compte.CreationFragment"
+        android:label="Insert Personne"
+        tools:layout="@layout/fragment_creation" />
 </navigation>

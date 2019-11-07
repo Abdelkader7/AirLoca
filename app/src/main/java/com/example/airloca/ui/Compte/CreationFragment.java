@@ -1,6 +1,7 @@
 package com.example.airloca.ui.Compte;
 
 
+import android.app.DownloadManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -11,12 +12,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.airloca.R;
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+import java.util.concurrent.ForkJoinPool;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +32,7 @@ import java.io.IOException;
  * create an instance of this fragment.
  */
 public class CreationFragment extends Fragment {
+        ProgressBar progressBar;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -71,12 +80,15 @@ public class CreationFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_creation, container, false);
 
+        progressBar = view.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
         final EditText txtNom = view.findViewById(R.id.txtNom);
         final   EditText txtPrenom = view.findViewById(R.id.txtPrenom);
         final  EditText txtLogin = view.findViewById(R.id.txtLogin);
         final  EditText txtMobile = view.findViewById(R.id.txtMobile);
         final EditText txtPassword = view.findViewById(R.id.txtPassword);
         final  EditText txtEmail = view.findViewById(R.id.txtEmail);
+
 
         Button btnValider = view.findViewById(R.id.btnValider);
 
@@ -92,6 +104,9 @@ public class CreationFragment extends Fragment {
 
                 if(!nom.isEmpty() && !prenom.isEmpty() && !login.isEmpty() && !password.isEmpty() && !mobile.isEmpty() && !email.isEmpty()) {
 
+                    String url = "http://172.16.64.12/airloca/insertpersonne.php";
+                    OkHttpAsync okHttpAsync = new OkHttpAsync();
+                    okHttpAsync.execute(url,nom,prenom,login,password,email,mobile);
 
                 }else{
 
@@ -121,7 +136,25 @@ public class CreationFragment extends Fragment {
 
             OkHttpClient client = new OkHttpClient();
 
+            String nom = params[1];
+            String prenom = params[2];
+            String login = params[3];
+            String password = params[4];
+            String email = params[5];
+            String mobile = params[6];
+
+
+            RequestBody body = new FormEncodingBuilder()
+                    .add("nom",nom)
+                    .add("prenom",prenom)
+                    .add("login",login)
+                    .add("password",password)
+                    .add("email",email)
+                    .add("mobile",mobile)
+                    .build();
+
             Request request = new Request.Builder()
+                    .post(body)
                     .url(params[0])
                     .build();
             try {
@@ -139,8 +172,7 @@ public class CreationFragment extends Fragment {
             super.onPostExecute(s);
             progressBar.setVisibility(View.INVISIBLE);
 
-            TextView txtWeb = findViewById(R.id.retourhttp);
-            txtWeb.setText(s);
+
 
         }
     }
