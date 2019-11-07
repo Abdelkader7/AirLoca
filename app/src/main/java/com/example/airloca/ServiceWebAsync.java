@@ -18,17 +18,17 @@ import java.util.Map;
 
         public interface OnFragmentInteractionListener {
             // TODO: Update argument type and name
-            void onFragmentInteraction(String value);
+            void returnSw(String value);
         }
 
-        private OnFragmentInteractionListener _Listener;
+        OnFragmentInteractionListener onFragmentInteractionListener;
         private HashMap<String,String> _params;
         private String _url;
 
-        public ServiceWebAsync(String url, HashMap<String,String> params, Context context) {
+        public ServiceWebAsync(String url, HashMap<String,String> params, Context context,OnFragmentInteractionListener callServiceWebInterface) {
             this._params = params;
+            this.onFragmentInteractionListener = callServiceWebInterface;
             this._url = url;
-            this._Listener = (OnFragmentInteractionListener)context;
         }
 
         @Override
@@ -41,9 +41,10 @@ import java.util.Map;
         protected String doInBackground(String... params) {
 
             OkHttpClient client = new OkHttpClient();
+            String retour="";
 
             FormEncodingBuilder formEncodingBuilder = new FormEncodingBuilder();
-            if(_params !=null && _params.size() >0)
+            if(_params != null && _params.size() >0)
             {
                 for (Map.Entry value: _params.entrySet()) {
                     formEncodingBuilder.add(value.getKey().toString(),value.getValue().toString());
@@ -58,11 +59,12 @@ import java.util.Map;
                     .build();
             try {
                 Response response = client.newCall(request ).execute();
-                return response.body().string();
+                retour =  response.body().string();
             } catch (IOException e) {
-                String s = e.getMessage();
+                retour = e.getMessage();
             }
-            return null;
+
+            return retour;
         }
 
         @Override
@@ -70,11 +72,7 @@ import java.util.Map;
             //Handle result here
             super.onPostExecute(s);
 
-            if (_Listener != null) {
-                _Listener.onFragmentInteraction(s);
-            }
+            onFragmentInteractionListener.returnSw(s);
         }
 
     }
-
-

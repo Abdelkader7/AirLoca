@@ -127,7 +127,7 @@ public class LoginFragment extends Fragment implements ServiceWebAsync.OnFragmen
     public void onFragmentInteraction(String value) {
 
         String rr = value;
-        Toast.makeText(getContext(),"value=" +)
+        Toast.makeText(getContext(),"value=" + value, Toast.LENGTH_LONG).show());
 
     }
 }
