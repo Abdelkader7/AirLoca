@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.airloca.R;
 
@@ -62,7 +64,26 @@ public class CreationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_creation, container, false);
+        View view = inflater.inflate(R.layout.fragment_creation, container, false);
+
+        EditText txtNom = view.findViewById(R.id.txtNom);
+        EditText txtPrenom = view.findViewById(R.id.txtPrenom);
+        EditText txtLogin = view.findViewById(R.id.txtLogin);
+        EditText txtMobile = view.findViewById(R.id.txtMobile);
+        EditText txtPassword = view.findViewById(R.id.txtPassword);
+        EditText txtEmail = view.findViewById(R.id.txtEmail);
+
+        Button btnValider = view.findViewById(R.id.btnValider);
+
+        btnValider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+        return view;
     }
 
 }

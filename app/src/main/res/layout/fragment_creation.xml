@@ -13,45 +13,56 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/nom"
+            android:id="@+id/txtNom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Nom" />
+            android:hint="Nom" />
 
         <EditText
-            android:id="@+id/Prenom"
+            android:id="@+id/txtPrenom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="prenom" />
+            android:hint="prenom" />
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/txtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:hint="Email" />
 
         <EditText
-            android:id="@+id/login"
+            android:id="@+id/txtMobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="Mobile" />
+
+        <EditText
+            android:id="@+id/txtLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Login" />
+            android:hint="Login" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/txtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:hint="Password"
+            />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnValider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Button" />
