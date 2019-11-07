@@ -1,6 +1,7 @@
 package com.example.airloca.ui.Compte;
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,8 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.airloca.R;
+
+import java.io.IOException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,24 +71,78 @@ public class CreationFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_creation, container, false);
 
-        EditText txtNom = view.findViewById(R.id.txtNom);
-        EditText txtPrenom = view.findViewById(R.id.txtPrenom);
-        EditText txtLogin = view.findViewById(R.id.txtLogin);
-        EditText txtMobile = view.findViewById(R.id.txtMobile);
-        EditText txtPassword = view.findViewById(R.id.txtPassword);
-        EditText txtEmail = view.findViewById(R.id.txtEmail);
+        final EditText txtNom = view.findViewById(R.id.txtNom);
+        final   EditText txtPrenom = view.findViewById(R.id.txtPrenom);
+        final  EditText txtLogin = view.findViewById(R.id.txtLogin);
+        final  EditText txtMobile = view.findViewById(R.id.txtMobile);
+        final EditText txtPassword = view.findViewById(R.id.txtPassword);
+        final  EditText txtEmail = view.findViewById(R.id.txtEmail);
 
         Button btnValider = view.findViewById(R.id.btnValider);
 
         btnValider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String nom = txtNom.getText().toString();
+                String prenom = txtPrenom.getText().toString();
+                String login = txtLogin.getText().toString();
+                String password = txtPassword.getText().toString();
+                String email = txtEmail.getText().toString();
+                String mobile = txtMobile.getText().toString();
+
+                if(!nom.isEmpty() && !prenom.isEmpty() && !login.isEmpty() && !password.isEmpty() && !mobile.isEmpty() && !email.isEmpty()) {
+
+
+                }else{
+
+                    Toast.makeText(getContext(),"Veuillez saisir vos informations", Toast.LENGTH_LONG).show();
+                }
 
             }
         });
 
 
         return view;
+    }
+
+
+    public class OkHttpAsync extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressBar.setVisibility(View.VISIBLE);
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            OkHttpClient client = new OkHttpClient();
+
+            Request request = new Request.Builder()
+                    .url(params[0])
+                    .build();
+            try {
+                Response response = client.newCall(request ).execute();
+                return response.body().string();
+            } catch (IOException e) {
+                String s = e.getMessage();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s ) {
+            //Handle result here
+            super.onPostExecute(s);
+            progressBar.setVisibility(View.INVISIBLE);
+
+            TextView txtWeb = findViewById(R.id.retourhttp);
+            txtWeb.setText(s);
+
+        }
     }
 
 }
