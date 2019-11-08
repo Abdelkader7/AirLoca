@@ -18,4 +18,8 @@ public class Session {
 
         Session.personneConnected = personneConnected;
     }
+
+    public static boolean IsConnected(){
+        return personneConnected != null;
+    }
 }

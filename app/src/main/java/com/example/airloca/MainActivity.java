@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import com.example.airloca.Entities.Personne;
+import com.example.airloca.Utils.Functions;
+import com.google.gson.Gson;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -23,6 +27,15 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
 
             try {
+
+                String permanentPersonne = Functions.LoadSharedPreferences(MainActivity.this,Functions.LabelPermanentPersonne);
+
+                if(!permanentPersonne.isEmpty()){
+                    Gson gson = new Gson();
+                    Personne personne = gson.fromJson(permanentPersonne,Personne.class);
+
+                    Session.setPersonneConnected(personne);
+                }
                 Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();

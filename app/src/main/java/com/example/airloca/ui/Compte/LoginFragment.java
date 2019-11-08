@@ -24,6 +24,7 @@ import com.example.airloca.Entities.Personne;
 import com.example.airloca.R;
 import com.example.airloca.ServiceWebAsync;
 import com.example.airloca.Session;
+import com.example.airloca.Utils.Functions;
 import com.google.gson.Gson;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.OkHttpClient;
@@ -151,7 +152,7 @@ public class LoginFragment extends Fragment implements ServiceWebAsync.OnFragmen
         if(personne != null && !personne.getNom().isEmpty()){
             Session.setPersonneConnected(personne);
             if(checkbox.isChecked()){
-
+                Functions.SaveSharedPreferences(getActivity(),"PermanentPersonne",value);
             }
            NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
            navController.navigate(R.id.nav_compte_personne);

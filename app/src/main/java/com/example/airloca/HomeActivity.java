@@ -74,7 +74,12 @@ public class HomeActivity extends AppCompatActivity {
 
 
             case R.id.action_login:
-                navController.navigate(R.id.nav_login);
+                if(Session.IsConnected()){
+                    navController.navigate(R.id.nav_compte_personne);
+                }else{
+                    navController.navigate(R.id.nav_login);
+
+                }
                 break;
             default:
                 break;
