@@ -1,15 +1,20 @@
 package com.example.airloca.ui.Compte;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +24,7 @@ import com.example.airloca.Entities.Personne;
 import com.example.airloca.R;
 import com.example.airloca.ServiceWebAsync;
 import com.example.airloca.Session;
+import com.google.gson.Gson;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -42,6 +48,11 @@ public class LoginFragment extends Fragment implements ServiceWebAsync.OnFragmen
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    EditText txtLogin;
+    EditText txtPassword;
+    CheckBox checkbox ;
+
+
 
 
     public LoginFragment() {
@@ -83,10 +94,12 @@ public class LoginFragment extends Fragment implements ServiceWebAsync.OnFragmen
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
 
-        final  EditText txtLogin = view.findViewById(R.id.txtLogin);
-        final EditText txtPassword = view.findViewById(R.id.txtPassword);
+        txtLogin = view.findViewById(R.id.txtLogin);
+        txtPassword = view.findViewById(R.id.txtPassword);
         final ImageView logo = view.findViewById(R.id.logo);
         final TextView txtTitre = view.findViewById(R.id.txtTitre);
+
+        checkbox = view.findViewById(R.id.checkBox);
 
 
         Button btnLogin = view.findViewById(R.id.btnLogin);
@@ -106,7 +119,7 @@ public class LoginFragment extends Fragment implements ServiceWebAsync.OnFragmen
                     params.put("login",login);
                     params.put("password",password);
 
-                    ServiceWebAsync serviceWebAsync = new ServiceWebAsync(url,null,getContext());
+                    ServiceWebAsync serviceWebAsync = new ServiceWebAsync(url,params,getContext(),LoginFragment.this);
                     serviceWebAsync.execute();
 
 
@@ -124,10 +137,31 @@ public class LoginFragment extends Fragment implements ServiceWebAsync.OnFragmen
 
 
     @Override
-    public void onFragmentInteraction(String value) {
+    public void returnSw(String value) {
+        Toast.makeText(getContext(),"value=" + value, Toast.LENGTH_LONG).show();
 
-        String rr = value;
-        Toast.makeText(getContext(),"value=" + value, Toast.LENGTH_LONG).show());
+        Gson gson = new Gson();
+        Personne personne = null;
+        try {
+            personne = gson.fromJson(value,Personne.class);
+        }catch (Exception ex){
 
+        }
+
+        if(personne != null && !personne.getNom().isEmpty()){
+            Session.setPersonneConnected(personne);
+            if(checkbox.isChecked()){
+
+            }
+           NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+           navController.navigate(R.id.nav_compte_personne);
+
+        }else{
+            Toast.makeText(getContext(),"Identification incorrect",Toast.LENGTH_LONG).show();
+            txtLogin.setText("");
+            txtPassword.setText("");
+
+        }
     }
 }
+
