@@ -1,10 +1,12 @@
 package com.example.airloca;
 
+import com.example.airloca.Entities.Favoris;
 import com.example.airloca.Entities.Personne;
 
 public class Session {
 
     private static Personne personneConnected;
+    private static Favoris favoris;
 
     public static Personne getPersonneConnected() {
         if(personneConnected == null)

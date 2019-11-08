@@ -16,4 +16,9 @@
         android:icon="@drawable/ic_person_black_24dp"
         android:title="Login"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/maps"
+        android:icon="@android:drawable/ic_dialog_map"
+        android:title="Item"
+        app:showAsAction="always" />
 </menu>

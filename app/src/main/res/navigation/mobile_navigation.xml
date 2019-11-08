@@ -33,7 +33,11 @@
         android:id="@+id/nav_share"
         android:name="com.example.airloca.ui.share.ShareFragment"
         android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
+        tools:layout="@layout/fragment_share" >
+        <argument
+            android:name="logement"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_send"

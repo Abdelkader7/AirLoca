@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imgPhoto"
+        android:layout_width="165dp"
+        android:layout_height="134dp"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/watermark_petit" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtTitre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Titre : "
+            android:textColor="#FF5252"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/txtDescriptif"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Descriptif:"
+            android:textColor="#1A237E" />
+
+        <TextView
+            android:id="@+id/txtVille"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ville:"
+            android:textColor="#1A237E" />
+
+        <Button
+            android:id="@+id/btnDetail"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/shape"
+            android:text="Détail"
+            android:textColor="#FBFBFD"
+            android:textSize="14sp" />
+    </LinearLayout>
+</LinearLayout>

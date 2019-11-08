@@ -1,5 +1,6 @@
 package com.example.airloca;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -70,6 +71,10 @@ public class HomeActivity extends AppCompatActivity {
 
             case R.id.action_addPersonne:
                 navController.navigate(R.id.nav_insert_personne);
+                break;
+            case R.id.maps:
+                Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
+                startActivity(intent);
                 break;
 
 
