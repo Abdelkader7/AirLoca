@@ -55,6 +55,7 @@
             android:layout_weight="1"
             android:text="TextView"
             android:textColor="#1A237E" />
+
     </LinearLayout>
 
     <Button

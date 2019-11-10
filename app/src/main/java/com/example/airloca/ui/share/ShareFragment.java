@@ -48,6 +48,8 @@ public class ShareFragment extends Fragment {
         txtAdresse.setText(logement.getAdresse());
         txtCodePostal.setText(logement.getCodePostal());
         txtVille.setText(logement.getVille());
+        txtDescriptif.setText(logement.getDescriptif());
+
 
 
         ImageView imgPhotoDetail = view.findViewById(R.id.imgPhotoDetail);
